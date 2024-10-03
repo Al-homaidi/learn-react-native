@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Platform, View,Text } from 'react-native';
+import { Image, StyleSheet, Platform, View,Text, ImageBackground, ScrollView, Button} from 'react-native';
 
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
@@ -10,11 +10,24 @@ const logoimg = require('../../assets/images/adaptive-icon.png')
 export default function HomeScreen() {
   return (
 
-    <View style={{backgroundColor: 'plum', padding: 60, flex: 1}}>
-      <Text style={{color: '#fff'}}>
-        shadow
-      </Text>
-      <Image source={logoimg} style={{width: 300, height: 300}}/>
+    <View style={{backgroundColor: 'plum', flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <ScrollView contentContainerStyle={{ justifyContent: 'center', alignItems: 'center' }}>
+        <Text style={{color: '#fff'}}>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam nihil, est quibusdam soluta ab cum, architecto dolorem natus, quo temporibus incidunt. Qui id perspiciatis est sequi magni vitae molestiae fugit.
+        </Text>
+        <Image source={logoimg} style={{width: 300, paddingTop: 60, paddingBottom: 160 , height: 300}}/>
+        <Image source={{ uri: 'https://picsum.photos/300' }} style={{ width: 300, height: 300 }} />
+        <Image source={logoimg} style={{width: 300, height: 300}}/>
+        <Image source={logoimg} style={{width: 300, height: 300}}/>
+        <Text style={{color: '#fff'}}>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam nihil, est quibusdam soluta ab cum, architecto dolorem natus, quo temporibus incidunt. Qui id perspiciatis est sequi magni vitae molestiae fugit.
+        </Text>
+        <View>
+        <Button title="Submit" onPress={() => {
+          console.log('sahdow');
+        }}/>
+        </View>
+      </ScrollView>
     </View>
 
     // <ParallaxScrollView
