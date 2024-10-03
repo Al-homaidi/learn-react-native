@@ -10,6 +10,7 @@ import {
   StatusBar,
   ActivityIndicator,
   Alert,
+  ScrollView,
 } from "react-native";
 
 import { HelloWave } from "@/components/HelloWave";
@@ -17,8 +18,14 @@ import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { useState } from "react";
+import Names from "./name";
+
+import { mains } from "./name";
+
 
 const logoimg = require("../../assets/images/adaptive-icon.png");
+
+const data = {name: "shadow", job: 'fight'};
 
 export default function HomeScreen() {
   const [semodal, setsemodal] = useState(true);
@@ -108,8 +115,45 @@ export default function HomeScreen() {
       <ActivityIndicator size={"large"} color={"red"} />
       <ActivityIndicator size={"large"} color={"black"} animating={semodal} /> */}
 
+      <StatusBar backgroundColor="blue" barStyle="light-content" showHideTransition={"fade"}/>
+
       <Button title="Alert" onPress={() => Alert.alert("shadow fight")} />
-      <Button title="Alert2" onPress={() => Alert.alert("shadow fight", "sahodw main")} />
+      <Button title="Alert 2" onPress={() => Alert.alert("shadow fight", "sahodw main")} />
+          {/* <Button 
+      title="Alert 3" 
+      onPress={() => 
+        Alert.alert(
+          "Shadow Fight", 
+          "Shadow main", 
+          [
+            {
+              text: 'Cancel',
+              onPress: () => Alert.alert('Cancel Pressed'),
+              style: 'cancel',
+            },
+          ],
+          {
+            cancelable: false,
+            onDismiss: () => {
+              Alert.alert('This alert was dismissed by tapping outside of the alert dialog.')
+            }
+          }
+        )
+      } 
+    /> */}
+
+        <ScrollView>
+            <View style={styles.container}>
+            <Names name="mohammed" />
+          </View>
+          <Names name={data.name}/>
+          <View style={{borderRadius: 20,padding: 20,backgroundColor: "black",borderWidth: 4,borderColor: '#eee',borderStyle: "solid",}}>
+            <Text style={[mains.text, styles.size]}>
+              sahodw
+            </Text>
+          </View>
+        </ScrollView>
+
     </View>
 
     // <ParallaxScrollView
@@ -156,6 +200,17 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'blue',
+  },
+  size: {
+    // borderRadius: 34,
+    fontSize: 60,
+    // paddingHorizontal: 10,
+    // paddingVertical: 50,
+    // backgroundColor: 'black',
+    // padding: 10,
+  },
   titleContainer: {
     flexDirection: "row",
     alignItems: "center",
