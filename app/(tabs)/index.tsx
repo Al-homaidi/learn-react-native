@@ -1,20 +1,115 @@
-import { Image, StyleSheet, Platform, View,Text } from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  Platform,
+  View,
+  Text,
+  Button,
+  Pressable,
+  Modal,
+  StatusBar,
+  ActivityIndicator,
+  Alert,
+} from "react-native";
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import { HelloWave } from "@/components/HelloWave";
+import ParallaxScrollView from "@/components/ParallaxScrollView";
+import { ThemedText } from "@/components/ThemedText";
+import { ThemedView } from "@/components/ThemedView";
+import { useState } from "react";
 
-const logoimg = require('../../assets/images/adaptive-icon.png') 
+const logoimg = require("../../assets/images/adaptive-icon.png");
 
 export default function HomeScreen() {
+  const [semodal, setsemodal] = useState(true);
   return (
+    <View
+      style={{
+        backgroundColor: "plum",
+        padding: 60,
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      {/* <Pressable
+        onPress={() => {
+          console.log("press: الضغط العادي");
+        }}
+      >
+        <Text style={{ color: "#fff" }}>shadow</Text>
+      </Pressable>
+      <Pressable
+        onLongPress={() => {
+          console.log("press: الضغط الطويل");
+        }}
+      >
+        <Text style={{ color: "#fff" }}>shadow</Text>
+      </Pressable>
+      <Pressable
+        onPressOut={() => {
+          console.log("press: الضغط والاكشن بعد الافلات");
+        }}
+      ></Pressable>
+      <Pressable
+        onLongPress={() => {
+          console.log("shapdw");
+        }}
+      >
+        <Image source={logoimg} style={{ width: 300, height: 300 }} />
+      </Pressable> */}
+      {/* <View>
+        <Button
+          onPress={() => {
+            setsemodal(true);
+          }}
+          title="Click"
+          color={"red"}
+        />
+      </View> */}
+      {/* <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+        <Modal
+          visible={semodal}
+          transparent={true}
+          animationType="slide"
+          {...(Platform.OS === "ios" ? { presentationStyle: "formSheet" } : {})}
+          onRequestClose={() => setsemodal(false)}
+        >
+          <View
+            style={{
+              backgroundColor: "blue",
+              padding: 10,
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Text style={{ color: "white" }}>This is in the modal</Text>
+            <Button title="Close" onPress={() => setsemodal(false)} />
+          </View>
+        </Modal>
+      </View> */}
 
-    <View style={{backgroundColor: 'plum', padding: 60, flex: 1}}>
-      <Text style={{color: '#fff'}}>
-        shadow
-      </Text>
-      <Image source={logoimg} style={{width: 300, height: 300}}/>
+      {/* <Button
+        onPress={() => {
+          if (semodal) {
+            setsemodal(false);
+          } else {
+            setsemodal(true);
+          }
+        }}
+        title="Click"
+        color={"red"}
+      />
+
+      <StatusBar backgroundColor="blue" barStyle="dark-content" />
+      <ActivityIndicator />
+      <ActivityIndicator size={"large"} />
+      <ActivityIndicator size={"large"} color={"red"} />
+      <ActivityIndicator size={"large"} color={"black"} animating={semodal} /> */}
+
+      <Button title="Alert" onPress={() => Alert.alert("shadow fight")} />
+      <Button title="Alert2" onPress={() => Alert.alert("shadow fight", "sahodw main")} />
     </View>
 
     // <ParallaxScrollView
@@ -62,8 +157,8 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     gap: 8,
   },
   stepContainer: {
@@ -75,6 +170,6 @@ const styles = StyleSheet.create({
     width: 290,
     bottom: 0,
     left: 0,
-    position: 'absolute',
+    position: "absolute",
   },
 });
