@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   Image,
   StyleSheet,
@@ -11,153 +12,51 @@ import {
   ActivityIndicator,
   Alert,
   ScrollView,
+  Dimensions,
 } from "react-native";
 
-import { HelloWave } from "@/components/HelloWave";
-import ParallaxScrollView from "@/components/ParallaxScrollView";
-import { ThemedText } from "@/components/ThemedText";
-import { ThemedView } from "@/components/ThemedView";
-import { useState } from "react";
-import Names from "./name";
-
-import { mains } from "./name";
-
-
-const logoimg = require("../../assets/images/adaptive-icon.png");
-
-const data = {name: "shadow", job: 'fight'};
-
 export default function HomeScreen() {
-  const [semodal, setsemodal] = useState(true);
+
+  const [deshadow, setdeshadow] = useState({
+    window: Dimensions.get("window"),
+  });
+  console.log(deshadow)
+
+  useEffect(() => {
+    // عند تغيير أبعاد الشاشة، يتم تحديث قيم الأبعاد في state
+    const handleDimensionChange = ({ window }) => {
+      setdeshadow({ window });
+    };
+    
+    const shaodwfight = Dimensions.addEventListener("change", handleDimensionChange);
+
+    return () => shaodwfight?.remove(); // إزالة المستمع عند انتهاء الاستخدام
+  }, []);
+
+  // استخدام deshadow.window بدلاً من window مباشرة
+  const windowwidth = deshadow.window.width;
+  const windowheight = deshadow.window.height;
+
   return (
-    <View
-      style={{
-        backgroundColor: "plum",
-        padding: 60,
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      {/* <Pressable
-        onPress={() => {
-          console.log("press: الضغط العادي");
-        }}
-      >
-        <Text style={{ color: "#fff" }}>shadow</Text>
-      </Pressable>
-      <Pressable
-        onLongPress={() => {
-          console.log("press: الضغط الطويل");
-        }}
-      >
-        <Text style={{ color: "#fff" }}>shadow</Text>
-      </Pressable>
-      <Pressable
-        onPressOut={() => {
-          console.log("press: الضغط والاكشن بعد الافلات");
-        }}
-      ></Pressable>
-      <Pressable
-        onLongPress={() => {
-          console.log("shapdw");
-        }}
-      >
-        <Image source={logoimg} style={{ width: 300, height: 300 }} />
-      </Pressable> */}
-      {/* <View>
-        <Button
-          onPress={() => {
-            setsemodal(true);
-          }}
-          title="Click"
-          color={"red"}
-        />
-      </View> */}
-      {/* <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Modal
-          visible={semodal}
-          transparent={true}
-          animationType="slide"
-          {...(Platform.OS === "ios" ? { presentationStyle: "formSheet" } : {})}
-          onRequestClose={() => setsemodal(false)}
-        >
-          <View
-            style={{
-              backgroundColor: "blue",
-              padding: 10,
-              flex: 1,
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Text style={{ color: "white" }}>This is in the modal</Text>
-            <Button title="Close" onPress={() => setsemodal(false)} />
-          </View>
-        </Modal>
-      </View> */}
-
-      {/* <Button
-        onPress={() => {
-          if (semodal) {
-            setsemodal(false);
-          } else {
-            setsemodal(true);
-          }
-        }}
-        title="Click"
-        color={"red"}
-      />
-
-      <StatusBar backgroundColor="blue" barStyle="dark-content" />
-      <ActivityIndicator />
-      <ActivityIndicator size={"large"} />
-      <ActivityIndicator size={"large"} color={"red"} />
-      <ActivityIndicator size={"large"} color={"black"} animating={semodal} /> */}
-
-      <StatusBar backgroundColor="blue" barStyle="light-content" showHideTransition={"fade"}/>
-
-      <Button title="Alert" onPress={() => Alert.alert("shadow fight")} />
-      <Button title="Alert 2" onPress={() => Alert.alert("shadow fight", "sahodw main")} />
-          {/* <Button 
-      title="Alert 3" 
-      onPress={() => 
-        Alert.alert(
-          "Shadow Fight", 
-          "Shadow main", 
-          [
-            {
-              text: 'Cancel',
-              onPress: () => Alert.alert('Cancel Pressed'),
-              style: 'cancel',
-            },
-          ],
+    <View style={styles.container}>
+      <View
+        style={[
+          styles.box,
           {
-            cancelable: false,
-            onDismiss: () => {
-              Alert.alert('This alert was dismissed by tapping outside of the alert dialog.')
-            }
-          }
-        )
-      } 
-    /> */}
-
-        <ScrollView>
-            <View style={styles.container}>
-            <Names name="mohammed" />
-          </View>
-          <Names name={data.name}/>
-          <View style={{borderRadius: 20,padding: 20,backgroundColor: "black",borderWidth: 4,borderColor: '#eee',borderStyle: "solid",}}>
-            <Text style={[mains.text, styles.size]}>
-              sahodw
-            </Text>
-          </View>
-        </ScrollView>
-
+            width: windowwidth > 500 ? "70%" : "90%",
+            height: windowheight > 600 ? "60%" : "90%",
+          },
+        ]}
+      >
+        <Text style={[styles.text, { fontSize: windowwidth > 500 ? 50 : 24, color:  windowwidth > 500 ? "red" : "black" }]}>
+          SHADOW
+        </Text>
+      </View>
     </View>
 
+    // كود مكمت (غير مفعّل) يستخدم لإضافة ميزات أخرى لاحقًا مثل ParallaxScrollView
     // <ParallaxScrollView
-    //   headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
+    //   headerbackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
     //   headerImage={
     //     <Image
     //       source={require('@/assets/images/partial-react-logo.png')}
@@ -201,11 +100,29 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'blue',
+    flex: 1,
+    backgroundColor: "blue", // تم تصحيح اللون إلى "blue"
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  box: {
+    backgroundColor: "lightblue",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  text: {},
+  boxshadow: {
+    shadowColor: "red",
+    shadowOpacity: 0.7,
+    shadowOffset: { width: 6, height: 6 },
+    shadowRadius: 4,
+  },
+  andeoudshadow: {
+    elevation: 20,
   },
   size: {
     // borderRadius: 34,
-    fontSize: 60,
+    fontSize: 10,
     // paddingHorizontal: 10,
     // paddingVertical: 50,
     // backgroundColor: 'black',
