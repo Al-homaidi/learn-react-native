@@ -12,47 +12,25 @@ import {
   ActivityIndicator,
   Alert,
   ScrollView,
-  Dimensions,
+  useWindowDimensions,
+  SafeAreaView,
 } from "react-native";
+
+// https://uiverse.io/Li-Deheng/sweet-liger-88
 
 export default function HomeScreen() {
 
-  const [deshadow, setdeshadow] = useState({
-    window: Dimensions.get("window"),
-  });
-  console.log(deshadow)
 
-  useEffect(() => {
-    // عند تغيير أبعاد الشاشة، يتم تحديث قيم الأبعاد في state
-    const handleDimensionChange = ({ window }) => {
-      setdeshadow({ window });
-    };
-    
-    const shaodwfight = Dimensions.addEventListener("change", handleDimensionChange);
 
-    return () => shaodwfight?.remove(); // إزالة المستمع عند انتهاء الاستخدام
-  }, []);
-
-  // استخدام deshadow.window بدلاً من window مباشرة
-  const windowwidth = deshadow.window.width;
-  const windowheight = deshadow.window.height;
 
   return (
-    <View style={styles.container}>
-      <View
-        style={[
-          styles.box,
-          {
-            width: windowwidth > 500 ? "70%" : "90%",
-            height: windowheight > 600 ? "60%" : "90%",
-          },
-        ]}
-      >
-        <Text style={[styles.text, { fontSize: windowwidth > 500 ? 50 : 24, color:  windowwidth > 500 ? "red" : "black" }]}>
-          SHADOW
+    <SafeAreaView style={styles.safecontainer}>
+        <View style={styles.container}>
+        <Text style={styles.text}>
+          Shadow
         </Text>
       </View>
-    </View>
+    </SafeAreaView>
 
     // كود مكمت (غير مفعّل) يستخدم لإضافة ميزات أخرى لاحقًا مثل ParallaxScrollView
     // <ParallaxScrollView
@@ -99,23 +77,28 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
+  safecontainer: {
+    flex: 1,
+    backgroundColor: "lightblue",
+  },
   container: {
     flex: 1,
-    backgroundColor: "blue", // تم تصحيح اللون إلى "blue"
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: "lightblue",
+    // paddingTop: 60,
   },
   box: {
     backgroundColor: "lightblue",
-    alignItems: "center",
+
     justifyContent: "center",
   },
-  text: {},
+  text: {
+    textAlign: "center",
+    padding: 20,
+    fontSize: 20,
+  },
   boxshadow: {
     shadowColor: "red",
-    shadowOpacity: 0.7,
-    shadowOffset: { width: 6, height: 6 },
-    shadowRadius: 4,
+  
   },
   andeoudshadow: {
     elevation: 20,
