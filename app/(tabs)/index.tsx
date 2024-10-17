@@ -15,20 +15,20 @@ import {
   useWindowDimensions,
   SafeAreaView,
 } from "react-native";
+import CustomButtonioc from "../../components/custombuttons/custombutton.ico";
+import CustomButtonandroid from "../../components/custombuttons/custombutton.android";
 
 // https://uiverse.io/Li-Deheng/sweet-liger-88
 
 export default function HomeScreen() {
 
-
-
-
   return (
     <SafeAreaView style={styles.safecontainer}>
-        <View style={styles.container}>
+      <View style={styles.container}>
         <Text style={styles.text}>
           Shadow
         </Text>
+        {Platform.OS == 'android' ? <CustomButtonandroid title={'clcik me'} onPress={() => {alert('i love you')}} /> : <CustomButtonioc title={'clcik me'} onPress={() => {alert('i love you')}} />}
       </View>
     </SafeAreaView>
 
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "lightblue",
-    // paddingTop: 60,
+    paddingTop: Platform.OS === 'android' ? 210 : 0,
   },
   box: {
     backgroundColor: "lightblue",
@@ -92,9 +92,21 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   text: {
-    textAlign: "center",
-    padding: 20,
-    fontSize: 20,
+    ...Platform.select({
+      ios: {
+        textAlign: "center",
+        padding: 20,
+        fontSize: 20,
+        color: 'red',
+        fontStyle: 'italic',
+      },
+      android: {
+        textAlign: "center",
+        padding: 20,
+        fontSize: 20,
+        color: "yellow",
+      }
+    })
   },
   boxshadow: {
     shadowColor: "red",
