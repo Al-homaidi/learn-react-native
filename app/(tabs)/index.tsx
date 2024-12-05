@@ -15,26 +15,109 @@ import {
   useWindowDimensions,
   SafeAreaView,
 } from "react-native";
-import CustomButtonioc from "../../components/custombuttons/custombutton.ico";
-import CustomButtonandroid from "../../components/custombuttons/custombutton.android";
 
-// https://uiverse.io/Li-Deheng/sweet-liger-88
+import { HelloWave } from "@/components/HelloWave";
+import ParallaxScrollView from "@/components/ParallaxScrollView";
+import { ThemedText } from "@/components/ThemedText";
+import { ThemedView } from "@/components/ThemedView";
+import { useState } from "react";
+
+const logoimg = require("../../assets/images/adaptive-icon.png");
 
 export default function HomeScreen() {
-
+  const [semodal, setsemodal] = useState(true);
   return (
-    <SafeAreaView style={styles.safecontainer}>
-      <View style={styles.container}>
-        <Text style={styles.text}>
-          Shadow
-        </Text>
-        {Platform.OS == 'android' ? <CustomButtonandroid title={'clcik me'} onPress={() => {alert('i love you')}} /> : <CustomButtonioc title={'clcik me'} onPress={() => {alert('i love you')}} />}
-      </View>
-    </SafeAreaView>
+    <View
+      style={{
+        backgroundColor: "plum",
+        padding: 60,
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      {/* <Pressable
+        onPress={() => {
+          console.log("press: الضغط العادي");
+        }}
+      >
+        <Text style={{ color: "#fff" }}>shadow</Text>
+      </Pressable>
+      <Pressable
+        onLongPress={() => {
+          console.log("press: الضغط الطويل");
+        }}
+      >
+        <Text style={{ color: "#fff" }}>shadow</Text>
+      </Pressable>
+      <Pressable
+        onPressOut={() => {
+          console.log("press: الضغط والاكشن بعد الافلات");
+        }}
+      ></Pressable>
+      <Pressable
+        onLongPress={() => {
+          console.log("shapdw");
+        }}
+      >
+        <Image source={logoimg} style={{ width: 300, height: 300 }} />
+      </Pressable> */}
+      {/* <View>
+        <Button
+          onPress={() => {
+            setsemodal(true);
+          }}
+          title="Click"
+          color={"red"}
+        />
+      </View> */}
+      {/* <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+        <Modal
+          visible={semodal}
+          transparent={true}
+          animationType="slide"
+          {...(Platform.OS === "ios" ? { presentationStyle: "formSheet" } : {})}
+          onRequestClose={() => setsemodal(false)}
+        >
+          <View
+            style={{
+              backgroundColor: "blue",
+              padding: 10,
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Text style={{ color: "white" }}>This is in the modal</Text>
+            <Button title="Close" onPress={() => setsemodal(false)} />
+          </View>
+        </Modal>
+      </View> */}
 
-    // كود مكمت (غير مفعّل) يستخدم لإضافة ميزات أخرى لاحقًا مثل ParallaxScrollView
+      {/* <Button
+        onPress={() => {
+          if (semodal) {
+            setsemodal(false);
+          } else {
+            setsemodal(true);
+          }
+        }}
+        title="Click"
+        color={"red"}
+      />
+
+      <StatusBar backgroundColor="blue" barStyle="dark-content" />
+      <ActivityIndicator />
+      <ActivityIndicator size={"large"} />
+      <ActivityIndicator size={"large"} color={"red"} />
+      <ActivityIndicator size={"large"} color={"black"} animating={semodal} /> */}
+
+      <Button title="Alert" onPress={() => Alert.alert("shadow fight")} />
+      <Button title="Alert2" onPress={() => Alert.alert("shadow fight", "sahodw main")} />
+    </View>
+
     // <ParallaxScrollView
-    //   headerbackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
+    //   headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
     //   headerImage={
     //     <Image
     //       source={require('@/assets/images/partial-react-logo.png')}
@@ -77,52 +160,6 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  safecontainer: {
-    flex: 1,
-    backgroundColor: "lightblue",
-  },
-  container: {
-    flex: 1,
-    backgroundColor: "lightblue",
-    paddingTop: Platform.OS === 'android' ? 210 : 0,
-  },
-  box: {
-    backgroundColor: "lightblue",
-
-    justifyContent: "center",
-  },
-  text: {
-    ...Platform.select({
-      ios: {
-        textAlign: "center",
-        padding: 20,
-        fontSize: 20,
-        color: 'red',
-        fontStyle: 'italic',
-      },
-      android: {
-        textAlign: "center",
-        padding: 20,
-        fontSize: 20,
-        color: "yellow",
-      }
-    })
-  },
-  boxshadow: {
-    shadowColor: "red",
-  
-  },
-  andeoudshadow: {
-    elevation: 20,
-  },
-  size: {
-    // borderRadius: 34,
-    fontSize: 10,
-    // paddingHorizontal: 10,
-    // paddingVertical: 50,
-    // backgroundColor: 'black',
-    // padding: 10,
-  },
   titleContainer: {
     flexDirection: "row",
     alignItems: "center",
