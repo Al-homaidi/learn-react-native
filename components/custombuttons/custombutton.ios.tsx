@@ -6,11 +6,11 @@ export default function CustomButtonandroid ({onPress, title }) {
         <Pressable onPress={onPress} style={{
             justifyContent: 'center',
             alignItems: 'center',
-            backgroundColor: 'bloe',
+            backgroundColor: 'blue',
             borderRadius: 5,
             padding: 15,
         }}>
-            <Text style={{color: 'black', fontSize: 13, }}>
+            <Text style={{color: 'white', fontSize: 13, }}>
                 {title}
             </Text>
         </Pressable>

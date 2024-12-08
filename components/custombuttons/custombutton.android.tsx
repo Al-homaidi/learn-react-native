@@ -6,7 +6,7 @@ export default function CustomButtonios ({onPress, title }) {
         <Pressable onPress={onPress} style={{
             justifyContent: 'center',
             alignItems: 'center',
-            backgroundColor: 'lightbloe',
+            backgroundColor: 'lightgreen',
             borderRadius: 20,
             padding: 10,
         }}>
