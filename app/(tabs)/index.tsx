@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Image,
   StyleSheet,
@@ -52,4 +53,3 @@ const style = StyleSheet.create({
     fontSize: 40,
   },
 })
->>>>>>> 9eed71905dc744ec98fcc1c6f4ba1e08271dc3dc
